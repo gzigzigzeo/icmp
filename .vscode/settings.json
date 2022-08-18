@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "icmp.h": "c",
+        "warning_push.h": "c"
+    }
+}
