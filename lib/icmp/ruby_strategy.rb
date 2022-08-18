@@ -44,14 +44,8 @@ module Icmp
     end
 
     def diff_area
-      return area unless area.nil?
-
-      if exclude_rect.nil?
-        self.area = include_rect.area
-        return area
-      end
-
-      self.area = include_rect.area - exclude_rect.area
+      return include_rect.area if exclude_rect.nil?
+      include_rect.area - exclude_rect.area
     end
   end
 end

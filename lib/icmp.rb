@@ -9,6 +9,7 @@ require_relative "icmp/ruby_simplified_strategy"
 require_relative "icmp/c_simplified_strategy"
 require_relative "icmp/c_bce_strategy"
 require_relative "icmp/c_normal_strategy"
+require_relative "icmp/c_normal_bce_strategy"
 require_relative "icmp/icmp"
 
 module Icmp

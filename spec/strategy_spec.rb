@@ -9,7 +9,8 @@ RSpec.describe do
     Icmp::RubySimplifiedStrategy,
     Icmp::CSimplifiedStrategy,
     Icmp::CBceStrategy,
-    Icmp::CNormalStrategy, # rubocop:disable Style/TrailingCommaInArrayLiteral
+    Icmp::CNormalStrategy,
+    Icmp::CNormalBceStrategy, # rubocop:disable Style/TrailingCommaInArrayLiteral
   ].each do |strategy|
     describe strategy, "#compare" do
       context "a and a" do

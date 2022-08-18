@@ -41,7 +41,15 @@ namespace :performance do
         Icmp::CBceStrategy.new(a, b).compare
       end
 
-      x.compare!
+      x.report "CNormal" do
+        Icmp::CNormalStrategy.new(a, b).compare
+      end
+
+      x.report "CNormalBce" do
+        Icmp::CNormalBceStrategy.new(a, b).compare
+      end
+
+      x.compare!(order: :baseline)
     end
   end
 end
