@@ -14,19 +14,8 @@ module Icmp
       (right - left + 1) * (bot - top + 1)
     end
 
-    def contains?(rect)
-      (left <= rect.left) &&
-        (right >= rect.right) &&
-        (top <= rect.top) &&
-        (bot >= rect.bot)
-    end
-
-    def bounds
+    def xyrb
       [left, top, right, bot]
-    end
-
-    def point_and_dimensions
-      [left, top, right - left, bot - top]
     end
 
     def contains_point?(x, y)

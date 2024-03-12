@@ -1,0 +1,11 @@
+[package]
+name = "icmp_rust"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+rutie = "0.8.4"
+piston2d-shapes = "0.36.0"
+
+[lib]
+crate-type = ["cdylib"]

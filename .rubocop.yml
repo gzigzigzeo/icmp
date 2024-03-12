@@ -1,0 +1,17 @@
+# .rubocop.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+
+inherit_from:
+  - .rubocop_rspec.yml
+  
+AllCops:
+  NewCops: enable

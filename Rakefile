@@ -11,9 +11,19 @@ require "standard/rake"
 
 task default: %i[compile standard spec]
 
-Rake::ExtensionTask.new("icmp") do |ext|
+Rake::ExtensionTask.new("icmp_c") do |ext|
+  ext.name = "icmp_c"
+  ext.ext_dir = "ext/icmp"
   ext.lib_dir = "lib/icmp"
-  ext.config_options = '--with-cflags="-std=c99"'
+  # ext.config_options = '--with-cflags="-std=c99"'
+  ext.config_script = "extconf_c.rb"
+end
+
+Rake::ExtensionTask.new("icmp_rust") do |ext|
+  ext.name = "icmp_rust"
+  ext.ext_dir = "ext/icmp"
+  ext.lib_dir = "lib/icmp"
+  ext.config_script = "extconf_rust.rb"
 end
 
 namespace :performance do
@@ -25,29 +35,41 @@ namespace :performance do
     b = Icmp::Image.from_file(File.expand_path("../spec/fixtures/b.png", __FILE__))
 
     Benchmark.ips do |x|
-      x.report "Ruby" do
-        Icmp::RubyStrategy.new(a, b).compare
+      x.report "Ruby (diff)" do
+        Icmp::RubyDiffStrategy.new(a, b).compare
       end
 
-      x.report "RubySimplified" do
-        Icmp::RubySimplifiedStrategy.new(a, b).compare
+      x.report "Ruby (score only)" do
+        Icmp::RubyScoreOnlyStrategy.new(a, b).compare
       end
 
-      x.report "CSimplified" do
-        Icmp::CSimplifiedStrategy.new(a, b).compare
+      x.report "C (diff)" do
+        Icmp::CDiffStrategy.new(a, b).compare
       end
 
-      x.report "CBce" do
-        Icmp::CBceStrategy.new(a, b).compare
+      x.report "C (score only)" do
+        Icmp::CScoreOnlyStrategy.new(a, b).compare
       end
 
-      x.report "CNormal" do
-        Icmp::CNormalStrategy.new(a, b).compare
+      x.report "C (raw diff)" do
+        Icmp::CRawDiffStrategy.new(a, b).compare
       end
 
-      x.report "CNormalBce" do
-        Icmp::CNormalBceStrategy.new(a, b).compare
+      x.report "C (raw score only)" do
+        Icmp::CRawScoreOnlyStrategy.new(a, b).compare
       end
+
+      # x.report "CNormal" do
+      #   Icmp::CNormalStrategy.new(a, b).compare
+      # end
+
+      # x.report "CNormalBce" do
+      #   Icmp::CNormalBceStrategy.new(a, b).compare
+      # end
+
+      # x.report "RustNormal" do
+      #   Icmp::RustNormalStrategy.new(a, b).compare
+      # end
 
       x.compare!(order: :baseline)
     end
