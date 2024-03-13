@@ -67,6 +67,10 @@ namespace :performance do
         Icmp::RustScoreOnlyStrategy.new(a, b).compare
       end
 
+      x.report "Rust (s/raw score only)" do
+        Icmp::RustSemiRawScoreOnlyStrategy.new(a, b).compare
+      end
+
       x.compare!(order: :baseline)
     end
   end
