@@ -1,3 +1,0 @@
-cargo:rustc-link-search=/Users/gzigzigzeo/.rvm/rubies/ruby-3.1.2/lib
-cargo:rustc-link-lib=ruby.3.1
-cargo:rustc-link-lib=dylib=ruby.3.1

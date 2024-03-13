@@ -6,6 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+ext/icmp/rust/target
 
 # rspec failure tracking
 .rspec_status
