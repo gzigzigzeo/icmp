@@ -10,9 +10,9 @@ RSpec.describe Icmp do
     Icmp::CDiffStrategy,
     Icmp::CScoreOnlyStrategy,
     Icmp::CRawDiffStrategy,
-    Icmp::CRawScoreOnlyStrategy
-    # Icmp::CNormalBceStrategy,
-    # Icmp::RustNormalStrategy
+    Icmp::CRawScoreOnlyStrategy,
+    Icmp::RustDiffStrategy,
+    Icmp::RustScoreOnlyStrategy
   ].each do |s|
     describe s, "#compare" do
       context "when a is compared to a" do

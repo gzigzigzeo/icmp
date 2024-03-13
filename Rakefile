@@ -59,17 +59,13 @@ namespace :performance do
         Icmp::CRawScoreOnlyStrategy.new(a, b).compare
       end
 
-      # x.report "CNormal" do
-      #   Icmp::CNormalStrategy.new(a, b).compare
-      # end
+      x.report "Rust (diff)" do
+        Icmp::RustDiffStrategy.new(a, b).compare
+      end
 
-      # x.report "CNormalBce" do
-      #   Icmp::CNormalBceStrategy.new(a, b).compare
-      # end
-
-      # x.report "RustNormal" do
-      #   Icmp::RustNormalStrategy.new(a, b).compare
-      # end
+      x.report "Rust (score only)" do
+        Icmp::RustScoreOnlyStrategy.new(a, b).compare
+      end
 
       x.compare!(order: :baseline)
     end

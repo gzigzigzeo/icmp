@@ -1,5 +1,5 @@
 module Icmp
-  class RubyScoreOnlyStrategy < BaseStrategy
+  class RubyScoreOnlyStrategy < BaseScoreOnlyStrategy
     def compare
       diff_counter = 0
 
