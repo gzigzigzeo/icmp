@@ -12,6 +12,7 @@ gem "benchmark-ips", "~> 2.10"
 gem "oily_png", "~> 1.2"
 gem "rake-compiler"
 gem "rb_sys"
+gem "fiddle"
 
 group :development do
   gem "rufo"

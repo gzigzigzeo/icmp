@@ -21,6 +21,8 @@ require_relative "icmp/rust_diff_strategy"
 require_relative "icmp/rust_score_only_strategy"
 require_relative "icmp/rust_semi_raw_score_only_strategy"
 
+require_relative "icmp/rust_score_only_buffer_strategy"
+
 require_relative "icmp/icmp_c"
 require_relative "icmp/icmp_rust"
 

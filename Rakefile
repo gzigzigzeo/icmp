@@ -31,8 +31,14 @@ namespace :performance do
   task :run do
     require "icmp"
 
-    a = Icmp::Image.from_file(File.expand_path("../spec/fixtures/a.png", __FILE__))
-    b = Icmp::Image.from_file(File.expand_path("../spec/fixtures/b.png", __FILE__))
+    a_path = File.expand_path("../spec/fixtures/a.png", __FILE__)
+    b_path = File.expand_path("../spec/fixtures/b.png", __FILE__)
+
+    a = Icmp::Image.from_file(a_path)
+    b = Icmp::Image.from_file(b_path)
+
+    a_buf = Icmp::ImageBuffer.from_file(a_path)
+    b_buf = Icmp::ImageBuffer.from_file(b_path)
 
     Benchmark.ips do |x|
       x.report "Ruby (diff)" do
@@ -69,6 +75,10 @@ namespace :performance do
 
       x.report "Rust (s/raw score only)" do
         Icmp::RustSemiRawScoreOnlyStrategy.new(a, b).compare
+      end
+
+      x.report "Rust (score only, bufs)" do
+        Icmp::RustScoreOnlyBufferStrategy.new(a_buf, b_buf).compare
       end
 
       x.compare!(order: :baseline)
